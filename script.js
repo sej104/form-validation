@@ -10,6 +10,14 @@ const resetErrors = () => {
   fields.forEach((field) => field.setCustomValidity(""));
 };
 
+fields.forEach((field) => {
+  field.addEventListener("blur", () => {
+    if (!field.validity.valid) {
+      field.reportValidity();
+    }
+  });
+});
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   resetErrors();
