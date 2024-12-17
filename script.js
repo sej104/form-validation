@@ -10,7 +10,7 @@ const resetErrors = () => {
   fields.forEach((field) => field.setCustomValidity(""));
 };
 
-function checkZipCode() {
+const checkZipCode = () => {
   const constraints = {
     ch: [
       "^(CH-)?\\d{4}$",
@@ -37,7 +37,7 @@ function checkZipCode() {
   } else {
     zipCode.setCustomValidity(constraints[country.value][1]);
   }
-}
+};
 
 country.addEventListener("change", () => {
   zipCode.setCustomValidity("");
@@ -85,4 +85,24 @@ form.addEventListener("submit", (e) => {
   }
 
   form.reset();
+  congratulateUser();
 });
+
+const congratulateUser = () => {
+  const heading = document.querySelector("h2");
+  heading.hidden = true;
+  form.hidden = true;
+
+  const image = document.createElement("img");
+  image.src = "./high-five.webp";
+  image.alt = "High five gif";
+
+  const body = document.body;
+  body.append(image);
+
+  image.addEventListener("click", () => {
+    body.removeChild(image);
+    heading.hidden = false;
+    form.hidden = false;
+  });
+};
