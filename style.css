@@ -1,0 +1,38 @@
+body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+form {
+  width: 200px;
+}
+
+div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 8px;
+}
+
+input,
+select {
+  padding: 3px;
+}
+
+input:user-invalid,
+select:user-invalid {
+  border: 1px solid #ff0000;
+  background-color: #e8808038;
+}
+
+input:valid,
+select:valid {
+  border: 1px solid #26ba4b;
+  background-color: #98d26b38;
+}
+
+input:focus:invalid,
+select:focus:invalid {
+  outline: none;
+}
