@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Validation</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <h2>JavaScript Validation</h2>
+    <form novalidate>
+      <div>
+        <label for="email">Email: <span aria-label="required">*</span></label>
+        <input type="email" name="email" id="email" required />
+      </div>
+      <div>
+        <label for="country">Country:</label>
+        <select name="country" id="country" required>
+          <option value="">Please select</option>
+          <option value="ch">Switzerland</option>
+          <option value="fr">France</option>
+          <option value="de">Germany</option>
+          <option value="nl">The Netherlands</option>
+        </select>
+      </div>
+      <div>
+        <label for="zip-code">
+          Zip Code: <span aria-label="required">*</span>
+        </label>
+        <input type="text" name="zip-code" id="zip-code" required />
+      </div>
+      <div>
+        <label for="password">
+          Password: <span aria-label="required">*</span>
+        </label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          minlength="6"
+          maxlength="12"
+          required
+        />
+      </div>
+      <div>
+        <label for="confirm-password">
+          Confirm Password: <span aria-label="required">*</span>
+        </label>
+        <input
+          type="password"
+          name="confirm-password"
+          id="confirm-password"
+          minlength="6"
+          maxlength="12"
+          required
+        />
+      </div>
+      <button>Submit</button>
+    </form>
+    <script src="./script.js" defer></script>
+  </body>
+</html>
