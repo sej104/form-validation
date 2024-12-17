@@ -10,54 +10,6 @@ const resetErrors = () => {
   fields.forEach((field) => field.setCustomValidity(""));
 };
 
-fields.forEach((field) => {
-  field.addEventListener("blur", () => {
-    if (!field.validity.valid) {
-      field.reportValidity();
-    }
-  });
-});
-
-confirmPassword.addEventListener("input", () => {
-  confirmPassword.setCustomValidity("");
-});
-
-zipCode.addEventListener("input", () => {
-  if (country.value) checkZipCode();
-
-  if (!zipCode.validity.valid) {
-    zipCode.reportValidity();
-  }
-});
-
-country.addEventListener("change", () => {
-  if (country.value) checkZipCode();
-  if (!zipCode.validity.valid && zipCode.value) {
-    zipCode.reportValidity();
-  }
-});
-
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  resetErrors();
-  if (country.value) checkZipCode();
-
-  for (const field of fields) {
-    if (!field.validity.valid) {
-      field.reportValidity();
-      return;
-    }
-  }
-
-  if (password.value !== confirmPassword.value) {
-    confirmPassword.setCustomValidity("Passwords do not match");
-    confirmPassword.reportValidity();
-    return;
-  }
-
-  form.reset();
-});
-
 function checkZipCode() {
   const constraints = {
     ch: [
@@ -86,3 +38,51 @@ function checkZipCode() {
     zipCode.setCustomValidity(constraints[country.value][1]);
   }
 }
+
+country.addEventListener("change", () => {
+  zipCode.setCustomValidity("");
+  if (country.value) checkZipCode();
+  if (!zipCode.validity.valid && zipCode.value) {
+    zipCode.reportValidity();
+  }
+});
+
+zipCode.addEventListener("input", () => {
+  if (country.value) checkZipCode();
+  if (!zipCode.validity.valid) {
+    zipCode.reportValidity();
+  }
+});
+
+confirmPassword.addEventListener("input", () => {
+  confirmPassword.setCustomValidity("");
+});
+
+fields.forEach((field) => {
+  field.addEventListener("blur", () => {
+    if (!field.validity.valid) {
+      field.reportValidity();
+    }
+  });
+});
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  resetErrors();
+  if (country.value) checkZipCode();
+
+  for (const field of fields) {
+    if (!field.validity.valid) {
+      field.reportValidity();
+      return;
+    }
+  }
+
+  if (password.value !== confirmPassword.value) {
+    confirmPassword.setCustomValidity("Passwords do not match");
+    confirmPassword.reportValidity();
+    return;
+  }
+
+  form.reset();
+});
