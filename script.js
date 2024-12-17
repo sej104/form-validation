@@ -18,6 +18,10 @@ fields.forEach((field) => {
   });
 });
 
+confirmPassword.addEventListener("input", () => {
+  confirmPassword.setCustomValidity("");
+});
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   resetErrors();
@@ -29,7 +33,6 @@ form.addEventListener("submit", (e) => {
   }
 
   if (password.value !== confirmPassword.value) {
-    password.setCustomValidity("Passwords do not match");
     confirmPassword.setCustomValidity("Passwords do not match");
     confirmPassword.reportValidity();
     return;
