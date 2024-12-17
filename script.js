@@ -22,6 +22,14 @@ confirmPassword.addEventListener("input", () => {
   confirmPassword.setCustomValidity("");
 });
 
+zipCode.addEventListener("input", () => {
+  if (country.value) checkZipCode();
+
+  if (!zipCode.validity.valid) {
+    zipCode.reportValidity();
+  }
+});
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   resetErrors();
