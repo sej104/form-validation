@@ -30,6 +30,13 @@ zipCode.addEventListener("input", () => {
   }
 });
 
+country.addEventListener("change", () => {
+  if (country.value) checkZipCode();
+  if (!zipCode.validity.valid && zipCode.value) {
+    zipCode.reportValidity();
+  }
+});
+
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   resetErrors();
